@@ -1,7 +1,16 @@
 import * as LifeActionTypes from '../actiontypes/life';
 
+const BOARD_SIZE = 20;
+let initialBoard = new Array(BOARD_SIZE);
+for (var i = 0; i < BOARD_SIZE; i++) {
+  initialBoard[i] = new Array(BOARD_SIZE);
+  for (var j = 0; j < BOARD_SIZE; j++) {
+    initialBoard[i][j] = 0;
+  }
+}
+
 const initialState = {
-  board: [],
+  board: initialBoard,
   selectedIndex: -1,
   isRunning: false,
   generation: 0,
@@ -9,8 +18,13 @@ const initialState = {
 
 export default function Life(state=initialState, action) {
   switch(action.type) {
-    case LifeActionTypes.ADD_LIFE: {
-			return state;
+    case LifeActionTypes.TOGGLE_LIFE: {
+      let newBoard = [...state.board];
+      newBoard[action.rowIndex][action.colIndex] = newBoard[action.rowIndex][action.colIndex] === 0 ? 1 : 0;
+      return {
+        ...state,
+        board: newBoard
+      }
     }
 
     case LifeActionTypes.RUN_GAME: {

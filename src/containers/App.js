@@ -1,15 +1,20 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import * as LifeActionCreators from '../actions/life';
 import '../App.css';
+import { pauseGame } from '../actions/life';
+import BoardSquare from '../components/BoardSquare'
 
 class App extends Component {
   
-  /*
   static propTypes = {
-    runTheGame: PropTypes.func.isRequired
-  }; */
+    board: PropTypes.array.isRequired,
+    runGame: PropTypes.func.isRequired,
+    pauseGame: PropTypes.func.isRequired,
+    toggleLife: PropTypes.func.isRequired,
+  };
   
   render() {
     return (
@@ -22,6 +27,25 @@ class App extends Component {
           Generation: {this.props.generation}
           Running: {this.props.isRunning.toString()}
         </div>
+        <div className="board">
+          {this.props.board.map((row, rowIndex) => {
+            return(
+              <div key={rowIndex}>
+                {row.map((square, colIndex) => {
+                  return(
+                    <BoardSquare
+                      square={square}
+                      rowIndex={rowIndex}
+                      colIndex={colIndex}
+                      toggleLife={this.props.toggleLife}
+                      key={colIndex}
+                    />
+                  );
+                })}
+              </div>
+            );
+          })}
+        </div>
       </div>
     );
   }
@@ -30,7 +54,8 @@ class App extends Component {
 const mapStateToProps = (state) => {
   return {
     generation: state.generation,
-    isRunning: state.isRunning
+    isRunning: state.isRunning,
+    board: state.board,
   }
 };
 
@@ -41,7 +66,10 @@ const mapDispatchToProps = (dispatch) => {
     },
     pauseGame: () => {
       dispatch(LifeActionCreators.pauseGame())
-    }
+    },
+    toggleLife: (rowIndex, colIndex) => {
+      dispatch(LifeActionCreators.toggleLife(rowIndex, colIndex))
+    },
   }
 };
 

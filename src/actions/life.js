@@ -11,3 +11,11 @@ export const pauseGame = () => {
     type: LifeActionTypes.PAUSE_GAME
   };
 };
+
+export const toggleLife = (rowIndex, colIndex) => {
+  return {
+    type: LifeActionTypes.TOGGLE_LIFE,
+    rowIndex,
+    colIndex
+  }
+}
