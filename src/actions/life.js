@@ -17,5 +17,11 @@ export const toggleLife = (rowIndex, colIndex) => {
     type: LifeActionTypes.TOGGLE_LIFE,
     rowIndex,
     colIndex
-  }
-}
+  };
+};
+
+export const clearBoard = () => {
+  return {
+    type: LifeActionTypes.CLEAR_BOARD
+  };
+};

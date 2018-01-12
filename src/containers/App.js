@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import * as LifeActionCreators from '../actions/life';
 import '../App.css';
-import { pauseGame } from '../actions/life';
 import BoardSquare from '../components/BoardSquare'
 
 class App extends Component {
@@ -14,6 +13,7 @@ class App extends Component {
     runGame: PropTypes.func.isRequired,
     pauseGame: PropTypes.func.isRequired,
     toggleLife: PropTypes.func.isRequired,
+    clearBoard: PropTypes.func.isRequired,
   };
   
   render() {
@@ -23,7 +23,7 @@ class App extends Component {
         <div className="control-btns">
           <Button onClick={this.props.runGame}>Run</Button>
           <Button onClick={this.props.pauseGame}>Pause</Button>
-          <Button>Clear</Button>
+          <Button onClick={this.props.clearBoard}>Clear</Button>
           Generation: {this.props.generation}
           Running: {this.props.isRunning.toString()}
         </div>
@@ -69,6 +69,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     toggleLife: (rowIndex, colIndex) => {
       dispatch(LifeActionCreators.toggleLife(rowIndex, colIndex))
+    },
+    clearBoard: () => {
+      dispatch(LifeActionCreators.clearBoard())
     },
   }
 };

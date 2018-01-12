@@ -27,6 +27,21 @@ export default function Life(state=initialState, action) {
       }
     }
 
+    case LifeActionTypes.CLEAR_BOARD: {
+      let newBoard = [...state.board];
+      newBoard = newBoard.map(row => {
+        row = row.map(square => {
+          square = 0;
+          return square;
+        });
+        return row;
+      });
+      return {
+        ...state,
+        board: newBoard
+      }
+    }
+
     case LifeActionTypes.RUN_GAME: {
       return {
         ...state,
