@@ -14,6 +14,7 @@ class App extends Component {
     pauseGame: PropTypes.func.isRequired,
     toggleLife: PropTypes.func.isRequired,
     clearBoard: PropTypes.func.isRequired,
+    nextGeneration: PropTypes.func.isRequired,
   };
   
   render() {
@@ -24,6 +25,7 @@ class App extends Component {
           <Button onClick={this.props.runGame}>Run</Button>
           <Button onClick={this.props.pauseGame}>Pause</Button>
           <Button onClick={this.props.clearBoard}>Clear</Button>
+          <Button onClick={this.props.nextGeneration}>Next Generation</Button>
           Generation: {this.props.generation}
           Running: {this.props.isRunning.toString()}
         </div>
@@ -73,6 +75,9 @@ const mapDispatchToProps = (dispatch) => {
     clearBoard: () => {
       dispatch(LifeActionCreators.clearBoard())
     },
+    nextGeneration: () => {
+      dispatch(LifeActionCreators.nextGeneration())
+    }
   }
 };
 

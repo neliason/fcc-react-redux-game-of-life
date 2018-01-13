@@ -25,3 +25,9 @@ export const clearBoard = () => {
     type: LifeActionTypes.CLEAR_BOARD
   };
 };
+
+export const nextGeneration = () => {
+  return {
+    type: LifeActionTypes.NEXT_GENERATION
+  }
+}
