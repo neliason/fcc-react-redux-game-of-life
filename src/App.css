@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  color: white;
 }
 
 .control-btns {
@@ -7,21 +8,34 @@
   margin: auto;
 }
 
+.control-btn, .control-btn:focus, .control-btn:active {
+  width: 90px;
+  background-color: #FF606E;
+  color: white;
+  outline: none;
+  font-size: 17px;
+}
+
+.generation-label {
+  font-size: 20px;
+  padding: 4px;
+}
+
 .square-value-0 {
-  background-color: white;
+  background-color: #262C3A;
 }
 
 .square-value-1 {
-  background-color: lightcoral;
+  background-color: #FF606E;
 }
 
 .board-row {
-  margin: -3px;
+  margin: -5px;
 }
 
 .board-square {
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   border-top: .25px solid #cccccc;
   border-left: .25px solid #cccccc;
   border-bottom: 0;

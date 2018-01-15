@@ -1,6 +1,6 @@
 import * as LifeActionTypes from '../actiontypes/life';
 
-const BOARD_SIZE = 20;
+const BOARD_SIZE = 30;
 let initialBoard = new Array(BOARD_SIZE);
 for (let i = 0; i < BOARD_SIZE; i++) {
   initialBoard[i] = new Array(BOARD_SIZE);

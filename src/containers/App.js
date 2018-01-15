@@ -33,15 +33,15 @@ class App extends Component {
         <div className="control-btns row">
           <div className="col-xs-3">
             { this.props.isRunning ?
-              <Button onClick={this.props.pauseGame}>Pause</Button>
+              <Button bsClass="btn control-btn" onClick={this.props.pauseGame}>Pause</Button>
               :
-              <Button onClick={this.props.runGame}>Run</Button>
+              <Button bsClass="btn control-btn" onClick={this.props.runGame}>Run</Button>
             }
           </div>
           <div className="col-xs-3">
-            <Button onClick={this.props.clearBoard}>Clear</Button>
+            <Button bsClass="btn control-btn" onClick={this.props.clearBoard}>Clear</Button>
           </div>
-          <div className="col-xs-6">
+          <div className="generation-label col-xs-6">
             Generation: {this.props.generation}
           </div>
         </div>
