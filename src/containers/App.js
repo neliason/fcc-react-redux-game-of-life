@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Button } from 'react-bootstrap';
 import * as LifeActionCreators from '../actions/life';
 import '../App.css';
 import BoardSquare from '../components/BoardSquare'
+import ControlPanel from '../components/ControlPanel'
+import Header from '../components/Header'
 
 class App extends Component {
   
   static propTypes = {
     board: PropTypes.array.isRequired,
     isRunning: PropTypes.bool.isRequired,
+    generation: PropTypes.number.isRequired,
     runGame: PropTypes.func.isRequired,
     pauseGame: PropTypes.func.isRequired,
     toggleLife: PropTypes.func.isRequired,
@@ -29,22 +31,16 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Game of Life</h1>
-        <div className="control-btns row">
-          <div className="col-xs-3">
-            { this.props.isRunning ?
-              <Button bsClass="btn control-btn" onClick={this.props.pauseGame}>Pause</Button>
-              :
-              <Button bsClass="btn control-btn" onClick={this.props.runGame}>Run</Button>
-            }
-          </div>
-          <div className="col-xs-3">
-            <Button bsClass="btn control-btn" onClick={this.props.clearBoard}>Clear</Button>
-          </div>
-          <div className="generation-label col-xs-6">
-            Generation: {this.props.generation}
-          </div>
-        </div>
+        <Header 
+          title="Game Of Life"
+        />
+        <ControlPanel 
+          isRunning={this.props.isRunning}
+          generation={this.props.generation}
+          runGame={this.props.runGame}
+          pauseGame={this.props.pauseGame}
+          clearBoard={this.props.clearBoard}
+        />
         <div className="board">
           {this.props.board.map((row, rowIndex) => {
             return(
