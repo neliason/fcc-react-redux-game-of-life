@@ -5,13 +5,13 @@ let initialBoard = new Array(BOARD_SIZE);
 for (let i = 0; i < BOARD_SIZE; i++) {
   initialBoard[i] = new Array(BOARD_SIZE);
   for (let j = 0; j < BOARD_SIZE; j++) {
-    initialBoard[i][j] = 0;
+    initialBoard[i][j] = Math.floor(Math.random() * Math.floor(2));
   }
 }
 
 const initialState = {
   board: initialBoard,
-  isRunning: false,
+  isRunning: true,
   generation: 0,
 }
 
@@ -43,31 +43,34 @@ export default function Life(state=initialState, action) {
     }
 
     case LifeActionTypes.NEXT_GENERATION: {
-      let newBoard = state.board.map((row, rowIndex) => {
-        row = row.map((square, colIndex) => {
-          let livingNeighbors = 0;
-          for(let i = -1; i <= 1; i++) {
-            for(let j = -1; j <= 1; j++) {
-              const outOfBounds = state.board[rowIndex + i] === undefined || state.board[rowIndex + i][colIndex + j] === undefined;
-              livingNeighbors += outOfBounds || (i === 0 && j === 0) ? 0 : state.board[rowIndex + i][colIndex + j];
+      if(state.isRunning) {
+        let newBoard = state.board.map((row, rowIndex) => {
+          row = row.map((square, colIndex) => {
+            let livingNeighbors = 0;
+            for(let i = -1; i <= 1; i++) {
+              for(let j = -1; j <= 1; j++) {
+                const outOfBounds = state.board[rowIndex + i] === undefined || state.board[rowIndex + i][colIndex + j] === undefined;
+                livingNeighbors += outOfBounds || (i === 0 && j === 0) ? 0 : state.board[rowIndex + i][colIndex + j];
+              }
             }
-          }
-          if(square === 1 && livingNeighbors < 2)
-            square = 0;
-          else if(square === 1 && livingNeighbors > 3)
-            square = 0;
-          else if(square === 0 && livingNeighbors === 3)
-            square = 1;
-          return square;
+            if(square === 1 && livingNeighbors < 2)
+              square = 0;
+            else if(square === 1 && livingNeighbors > 3)
+              square = 0;
+            else if(square === 0 && livingNeighbors === 3)
+              square = 1;
+            return square;
+          });
+          return row;
         });
-        return row;
-      });
-      
-      return {
-        ...state,
-        board: newBoard,
-        generation: state.generation + 1
+
+        return {
+          ...state,
+          board: newBoard,
+          generation: state.generation + 1
+        }
       }
+      return state;
     }
 
     case LifeActionTypes.RUN_GAME: {

@@ -10,24 +10,34 @@ class App extends Component {
   
   static propTypes = {
     board: PropTypes.array.isRequired,
+    isRunning: PropTypes.bool.isRequired,
     runGame: PropTypes.func.isRequired,
     pauseGame: PropTypes.func.isRequired,
     toggleLife: PropTypes.func.isRequired,
     clearBoard: PropTypes.func.isRequired,
     nextGeneration: PropTypes.func.isRequired,
   };
+
+  componentDidMount() {
+    this.interval = setInterval(this.props.nextGeneration, 200);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
   
   render() {
     return (
       <div className="App">
         <h1>Game of Life</h1>
         <div className="control-btns">
-          <Button onClick={this.props.runGame}>Run</Button>
-          <Button onClick={this.props.pauseGame}>Pause</Button>
+          { this.props.isRunning ?
+            <Button onClick={this.props.pauseGame}>Pause</Button>
+            :
+            <Button onClick={this.props.runGame}>Run</Button>
+          }
           <Button onClick={this.props.clearBoard}>Clear</Button>
-          <Button onClick={this.props.nextGeneration}>Next Generation</Button>
           Generation: {this.props.generation}
-          Running: {this.props.isRunning.toString()}
         </div>
         <div className="board">
           {this.props.board.map((row, rowIndex) => {
