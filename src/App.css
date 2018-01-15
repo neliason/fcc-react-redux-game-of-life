@@ -3,6 +3,11 @@
   color: white;
 }
 
+h1 {
+  font-family: 'VT323', monospace;
+  font-size: 56px;
+}
+
 .control-btns {
   max-width: 400px;
   margin: auto;
