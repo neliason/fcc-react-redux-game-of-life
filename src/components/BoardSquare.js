@@ -2,9 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const BoardSquare = props =>
-  <button className="board-square" onClick={() => props.toggleLife(props.rowIndex, props.colIndex)}>
-    {props.square}
-  </button>
+  <button className={`board-square square-value-${props.square}`} onClick={() => props.toggleLife(props.rowIndex, props.colIndex)} />
 
 
 BoardSquare.prototypes = {

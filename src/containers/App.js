@@ -30,19 +30,25 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Game of Life</h1>
-        <div className="control-btns">
-          { this.props.isRunning ?
-            <Button onClick={this.props.pauseGame}>Pause</Button>
-            :
-            <Button onClick={this.props.runGame}>Run</Button>
-          }
-          <Button onClick={this.props.clearBoard}>Clear</Button>
-          Generation: {this.props.generation}
+        <div className="control-btns row">
+          <div className="col-xs-3">
+            { this.props.isRunning ?
+              <Button onClick={this.props.pauseGame}>Pause</Button>
+              :
+              <Button onClick={this.props.runGame}>Run</Button>
+            }
+          </div>
+          <div className="col-xs-3">
+            <Button onClick={this.props.clearBoard}>Clear</Button>
+          </div>
+          <div className="col-xs-6">
+            Generation: {this.props.generation}
+          </div>
         </div>
         <div className="board">
           {this.props.board.map((row, rowIndex) => {
             return(
-              <div key={rowIndex}>
+              <div key={rowIndex} className="board-row">
                 {row.map((square, colIndex) => {
                   return(
                     <BoardSquare

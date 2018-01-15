@@ -1,3 +1,55 @@
 .App {
   text-align: center;
 }
+
+.control-btns {
+  max-width: 400px;
+  margin: auto;
+}
+
+.square-value-0 {
+  background-color: white;
+}
+
+.square-value-1 {
+  background-color: lightcoral;
+}
+
+.board-row {
+  margin: -3px;
+}
+
+.board-square {
+  width: 20px;
+  height: 20px;
+  border-top: .25px solid #cccccc;
+  border-left: .25px solid #cccccc;
+  border-bottom: 0;
+  border-right: 0;
+  cursor: default;
+}
+
+.board-square:last-child {
+  border-right: .25px solid #cccccc;
+}
+
+.board-row:last-child .board-square {
+  border-bottom: .25px solid #cccccc;
+}
+
+.board-square:focus {
+  outline: none;
+}
+
+.board-square:hover {
+  cursor: default;
+}
+
+.board-square:active {
+  outline: none;
+}
+
+.board {
+  margin-top: 20px;
+}
+
